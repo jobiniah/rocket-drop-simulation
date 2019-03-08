@@ -16,14 +16,14 @@ int main()
 	f.open("ouput");
 	double x = 0;
 	double dx = 0;
-	double yr = 100;
+	double yr = 100; //range of heights to try
 	double y = 0;
 	double dy = 0;
 	double a = 0;
 	double mass = 1;
 	double thrust = 10;
-	double thrustr = 100;
-	double burn_rate = 0.015821;
+	double thrustr = 100; //range of thrust to try
+	double burn_rate = 0.015821; //might be needed later
 	double drag = 0;
 	double Pressure = 101.325;
 	double g = 9.81;
@@ -32,7 +32,7 @@ int main()
 	double A = 0.1;
 	double t = 0;
 	double dt = 0.001;
-	double Vi = -sqrt((2 * mass * g) / (Rho * A * Cd));
+	double Vi = -sqrt((2 * mass * g) / (Rho * A * Cd));//terminal velocity
 	double V = Vi;
 	for (int i = 0; i < yr; i++)
 	{
@@ -58,10 +58,10 @@ int main()
 				{
 					Rho = (1.15061 * pow(10, 30)) / (pow(((0.003588*y) + 141.89), 11.388)*(y + 47454.8));
 				}
-				if (t > 1) {
+				if (t > 1) { //assume rocket only burn for one second
 					thrust = 0;
 				}
-				//f << t << "," << y << ",\n";
+				//f << t << "," << y << ",\n"; //output to CSV file
 				//cout << t << " " << y << " " << V << " " << thrust << endl;
 				Pressure = 101.325 * exp(-y / 5000);
 				drag = (Cd * A * 0.5 * Rho * pow(V, 2)) / 1000;
@@ -71,11 +71,11 @@ int main()
 				dy = V;
 				y += dy*dt;
 				t += dt;
-				if (y < 0 && abs(V) > 0.1) {
+				if (y < 0 && abs(V) > 0.1) { //check if rocket hit the ground harder than 0.1 m/s
 					cout << " BOOM!" << endl;
 					break;
 				}
-				if (y < 0.1 && abs(V) < 1 && t >= 1)
+				if (y < 0.1 && abs(V) < 1 && t >= 1) //check if rocket is less than 0.1 m and going slower than 0.1 m/s
 				{
 					cout << " a=" << a << " V=" << V << " y=" << y << " t=" << t << endl;
 					break;
