@@ -12,10 +12,8 @@ A=np.pi*d**2/4
 def main(M):
     m,y,v,t=1,[100.0],[0],[0.0]
     a=[-1*calcFg(y[0])]
-    #print( '{}m, {}m/s, {}m/s/s'.format(y,v,a) )
     i=0
     dt=M.dt
-    #print('{} min, {} max, {} dt'.format(M.min, M.max, dt))
     while(y[i]>0):
         newT=t[i]+dt
         t.append(np.round(newT,M.sigfigs))
@@ -24,7 +22,6 @@ def main(M):
         y.append( v[i+1]*dt+y[i] )
         
         i+=1
-        #print('Iteration {} \n{} s \n{} m \n{} m/s \n{} m/s/s \n'.format(i, t[i], y[i], v[i], a[i]))
     vzero,tzero=lib.analysis(y,v,t,i)
     return vzero, tzero
 
@@ -36,7 +33,6 @@ def sumF(Y, V, M, T):
     sumF+=calcFd(V,Y)
     
     sumF+=calcFth(M, T)
-    #print('{} N after Fth\n'.format(sumF))
     return sumF
 
 
@@ -70,7 +66,6 @@ def calcFth(M, T):
     if( (T>=M.min) & (T<=M.max) ):
         trel=np.round(T-M.min,M.sigfigs)
         index=(M.times==trel)
-        #print('{} s \n{} N \n {} truthtable '.format(trel,M.times,index))
         FTh=M.Thrust[index]
         FTh=FTh[0]
     else:

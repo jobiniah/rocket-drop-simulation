@@ -1,5 +1,5 @@
 import Numerical_Methods as nm
-#
+
 motorArray=['ESTE F15 data.csv', 'ESTE C6.csv', 'ESTE C11.csv','ESTE D12.csv', 'ESTE D11.csv','ESTE E9.csv', 'ESTE E12.csv', 'ESTE E16.csv', 'ESTE E30.csv']
 
 vzero,delay=[],[]

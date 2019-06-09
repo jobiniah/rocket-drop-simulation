@@ -21,9 +21,7 @@ def import_Thrust_Curve(name):
 def adjustThrustCurve(name, dt, sigfigs):
     Thrust, times = import_Thrust_Curve(name)
     t = [0.0]
-    i = 0
-    #t=matlabFill(0.0, max(times), dt, sigfigs)
-    
+    i = 0    
     while (max(t) < max(times)):
         roundedVal=np.round(max(t) + dt,sigfigs)
         t.append(roundedVal)
