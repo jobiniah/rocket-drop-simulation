@@ -1,10 +1,10 @@
 import csv
 import numpy as np
 
-def import_Thrust_Curve():
+def import_Thrust_Curve(name):
     times = []
     Thrust = []
-    with open('C:/Users/Jonat/Documents/Rocket Sim/ESTE F15 data.csv') as csvfile:
+    with open('data/'+name) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',')
         for row in spamreader:
             times.append(row[0])
@@ -18,8 +18,8 @@ def import_Thrust_Curve():
 
 
 # Adjust thrust time spacing
-def adjustThrustCurve(dt, sigfigs):
-    Thrust, times = import_Thrust_Curve()
+def adjustThrustCurve(name, dt, sigfigs):
+    Thrust, times = import_Thrust_Curve(name)
     t = [0.0]
     i = 0
     #t=matlabFill(0.0, max(times), dt, sigfigs)
