@@ -15,6 +15,7 @@ def main(M):
     #print( '{}m, {}m/s, {}m/s/s'.format(y,v,a) )
     i=0
     dt=M.dt
+    #print('{} min, {} max, {} dt'.format(M.min, M.max, dt))
     while(y[i]>0):
         newT=t[i]+dt
         t.append(np.round(newT,M.sigfigs))
@@ -75,11 +76,4 @@ def calcFth(M, T):
     else:
         FTh=0
     return FTh
-    
-def terminalVel(Y):
-    W=calcFg(Y)
-    Cd=0.42
-    rho=calcRho(Y)
-    termV=np.sqrt( (2*W)/(Cd*rho*A) )
-    return termV
 
