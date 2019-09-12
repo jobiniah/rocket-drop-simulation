@@ -12,6 +12,8 @@ class Thrust_Curve:
         self.sigfigs=sigfigs
         self.min=delay
         self.max=np.round(.1,sigfigs)
+        self.mLoss=lib.massLosses(self.Thrust,self.times, delay)
+
 class Initial_Conditions:
     def __init__(self):
         self.m=.7
@@ -25,7 +27,7 @@ class Initial_Conditions:
 def main(motorName):
     Range=[ [0] ]
     Range.append([0,20])
-    
+
     vzero,tzero=[0],[0]
     
     for i in range(1,4):

@@ -16,6 +16,14 @@ def import_Thrust_Curve(name):
         times[i] = float(times[i])
     return Thrust, times
 
+def massLosses(t, Th, delay, mLost=10):
+    mLoss={}
+    integrated=0
+    for i in range(len(t)-1):
+        integrated+=(Th[i] + Th[i+1])/2
+    for i in range(len(t)-1):
+        mLoss[ t[i]+delay ]=Th[i] * mLost / integrated
+    return mLoss
 
 # Adjust thrust time spacing
 def adjustThrustCurve(name, dt, sigfigs):
@@ -42,3 +50,6 @@ def matlabFill(start, stop, dt, sigfigs):
         roundedVal=np.round(max(range) + dt,sigfigs)
         range.append(roundedVal)
     return range
+
+if __name__=='__main__':
+    print("in Function Library")
