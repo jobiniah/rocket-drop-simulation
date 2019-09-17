@@ -11,17 +11,17 @@ class Thrust_Curve:
         self.dt=dt
         self.sigfigs=sigfigs
         self.min=delay
-        self.max=np.round(.1,sigfigs)
-        self.mLoss=lib.massLosses(self.Thrust,self.times, delay)
+        self.max=np.round(delay+max(self.times),sigfigs)
+        self.mLoss=lib.massLosses(self.Thrust,self.times, delay,sigfigs)
 
 class Initial_Conditions:
     def __init__(self):
-        self.m=.7
+        self.m=1
         self.y=[100.0]
         self.a=[ -9.81 ]
         self.v=[0]
         self.t=[0.0]
-        self.d=.076
+        self.d=.3
         self.A=np.pi*self.d**2/4
 
 def main(motorName):
@@ -39,6 +39,7 @@ def main(motorName):
             delay=timeRange[j]
             motor.min=delay
             motor.max=np.round(delay+max(motor.times),motor.sigfigs)
+            motor.mLoss=lib.massLosses(motor.Thrust,motor.times, delay,motor.sigfigs)
             vz,tz=Drop_Sim.main(motor)
             vzero[i].append( vz )
             tzero[i].append( tz )
@@ -50,7 +51,8 @@ def main(motorName):
         
     return max(vzero[len(vzero)-1]), timeRange[peakValue[0]]
 
-main('ESTE C11.csv')
 
-        
+if __name__=="__main__":
+    print("in Numerical Methods")
+    main('ESTE C11.csv')
     
